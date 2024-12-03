@@ -1,7 +1,7 @@
 // src/routes/embeddingRoutes.ts
 import { Router } from 'express';
 import multer from 'multer';
-import { verification } from '../controllers/embeddingController';
+import { identification } from '../controllers/embeddingController';
 
 const router = Router();
 
@@ -10,6 +10,6 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
 // Маршрут для верификации
-router.post('/verification', upload.single('photo'), verification);
+router.post('/identification', upload.single('photo'), identification);
 
 export default router;

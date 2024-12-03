@@ -83,9 +83,9 @@ export const check_exist_by_id = async (req:  Request<{}, {}, CheckExistRequestB
         const isHasSomeIdUser = await findUserById(req.body.userId);
 
         if (isHasSomeIdUser) {
-            return res.status(200).send({ status: 0, text: "user_exist_id" });
+            return res.status(200).send({ status: 1, text: "user_exist_id" });
         } else {
-            return res.status(200).send({ status: 1, text: "new_user_id" });
+            return res.status(200).send({ status: 0, text: "new_user_id" });
         }
     } catch (error) {
         return res.status(500).send({ status: 2, text: "server_error" });

@@ -14,7 +14,7 @@ interface VerificationRequest extends Request {
     file?: Express.Multer.File; // Молтер файл, если он есть
 }
 
-export const verification = async (req: VerificationRequest, res: Response):  Promise<any> => {
+export const identification = async (req: VerificationRequest, res: Response):  Promise<any> => {
     try {
         if (!req.file) {
             return res.status(200).send({ status: 2, text: "Нет изображения" });
