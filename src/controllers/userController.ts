@@ -6,6 +6,7 @@ import { getAllEmbedding, embeddingSave } from "../models/embeddingModel";
 import { savePhoto } from "../models/photoModel";
 import { addUser, findUserByNumber, findUserById } from "../models/usersModel";
 import { loadModels, detectFaces } from "../services/embeddingService";
+import pool from "../models/connection";
 
 // Загрузка моделей face-api
 loadModels().catch(console.error);
@@ -22,7 +23,9 @@ interface CheckExistRequestBody {
 }
 
 export const registration = async (req: Request<{}, {}, RegistrationRequest>, res: Response): Promise<any> => {
+    const client = await pool.connect();
     try {
+        await client.query('BEGIN'); // Начинаем транзакцию
         if (!req.file) {
             return res.status(200).send({ status: 2, text: "Нет изображения" });
         }
@@ -71,10 +74,14 @@ export const registration = async (req: Request<{}, {}, RegistrationRequest>, re
             await savePhoto(req.body.userId, idEmbedding, req.file.buffer);
         }
 
+        await client.query('COMMIT'); // Фиксируем транзакцию
         return res.status(200).send({ status: 1, text: "success" });
     } catch (error) {
+        await client.query('ROLLBACK'); // Откатываем транзакцию в случае ошибки
         console.error(error);
         return res.status(500).json({ error: "Упс" });
+    } finally {
+        client.release(); // Освобождаем клиента
     }
 };
 
