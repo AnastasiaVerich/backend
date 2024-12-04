@@ -1,11 +1,11 @@
 // src/controllers/userController.ts
 import * as faceapi from "@vladmandic/face-api";
-import {NextFunction, Request, Response} from "express";
+import {Request, Response} from "express";
 
-import { getAllEmbedding, embeddingSave } from "../models/embeddingModel";
-import { savePhoto } from "../models/photoModel";
-import { addUser, findUserByNumber, findUserById } from "../models/usersModel";
-import { loadModels, detectFaces } from "../services/embeddingService";
+import {embeddingSave, getAllEmbedding} from "../models/embeddingModel";
+import {savePhoto} from "../models/photoModel";
+import {addUser, findUserById, findUserByNumber} from "../models/usersModel";
+import {detectFaces, loadModels} from "../services/embeddingService";
 import pool from "../models/connection";
 
 // Загрузка моделей face-api
