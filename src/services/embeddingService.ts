@@ -13,7 +13,6 @@ export async function loadModels(): Promise<void> {
     await faceapi.nets.faceLandmark68Net.loadFromDisk(modelsPath); // Маркировка лиц
     await faceapi.nets.faceRecognitionNet.loadFromDisk(modelsPath); // Эмбеддинги
 
-    console.log("Модели загружены.");
 }
 
 // Функция для обнаружения лиц на изображении

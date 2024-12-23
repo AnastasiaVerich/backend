@@ -1,4 +1,3 @@
-// src/config/dbConfig.ts
 interface DbConfig {
     user: string;
     host: string;
@@ -10,9 +9,9 @@ interface DbConfig {
 const dbConfig: DbConfig = {
     user: 'myuser',
     host: 'localhost',
-    database: 'test',
-    password: 'test',
-    port: Number(process.env.PORT_DB) ?? 5432, // Порт может быть строкой, если переменная окружения задана
+    database: 'test2',
+    password: 'test2',
+    port: 5432, // Порт может быть строкой, если переменная окружения задана
 };
 
 export default dbConfig;

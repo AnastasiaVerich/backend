@@ -1,7 +1,6 @@
-// src/routes/embeddingRoutes.ts
 import { Router } from 'express';
 import multer from 'multer';
-import { identification } from '../controllers/embeddingController';
+import {identification} from "../controllers/embeddingController/identification";
 
 const router = Router();
 
